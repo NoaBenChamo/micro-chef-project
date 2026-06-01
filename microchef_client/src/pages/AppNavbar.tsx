@@ -52,62 +52,61 @@ export default function AppNavbar() {
           </Typography>
         </Box>
 
-        {/* מרכז: קישורי הניווט (מוסתרים במסכים קטנים מאוד) */}
+        {/* מרכז: קישורי הניווט באנגלית (מסודרים משמאל לימין) */}
         <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 2 }}>
-          
+          <Button 
+            component={Link} 
+            to="/" 
+            color="inherit" 
+            sx={{ fontSize: '1.1rem', textTransform: 'none', color: '#3b4450', '&:hover': { color: '#5d9c00' } }}
+          >
+            Home
+          </Button>
           <Button 
             component={Link} 
             to="/dashboard" 
             color="inherit" 
-            sx={{ textTransform: 'none', color: '#4b5563', '&:hover': { color: '#2563eb' } }}
+            sx={{ fontSize: '1.1rem', textTransform: 'none', color: '#3b4450', '&:hover': { color: '#5d9c00' } }}
           >
-            המקרר שלי
+            My Fridge
           </Button>
           <Button 
             component={Link} 
             to="/inventory" 
             color="inherit" 
-            sx={{ textTransform: 'none', color: '#4b5563', '&:hover': { color: '#2563eb' } }}
+            sx={{ fontSize: '1.1rem', textTransform: 'none', color: '#3b4450', '&:hover': { color: '#5d9c00' } }}
           >
-            מלאי וסטטיסטיקות
-          </Button>
-          <Button 
-            component={Link} 
-            to="/" 
-            color="inherit" 
-            sx={{ textTransform: 'none', color: '#4b5563', '&:hover': { color: '#2563eb' } }}
-          >
-            דף הבית
+            Inventory & Stats
           </Button>
         </Box>
 
         {/* צד ימין: אזור הפעמון וההתחברות */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
           
           {/* אייקון פעמון אמיתי עם Badge של התראות */}
-          <IconButton color="inherit" sx={{ color: '#4b5563' }}>
+          <IconButton color="inherit" sx={{ color: '#5d6571' }}>
             <Badge variant="dot" color="error">
               <NotificationsIcon />
             </Badge>
           </IconButton>
 
-          {/* כפתור התחברות מעוצב */}
+          {/* כפתור התחברות מעוצב באנגלית */}
           <Button 
             component={Link} 
             to="/auth" 
             variant="contained" 
             sx={{ 
-              backgroundColor: '#2563eb', 
+              backgroundColor: '#8eb652', 
               color: '#ffffff', 
               borderRadius: '12px', 
               textTransform: 'none', 
               fontWeight: 'bold',
               px: 3,
               py: 1,
-              '&:hover': { backgroundColor: '#1d4ed8' } 
+              '&:hover': { backgroundColor: '#5d9c00' } 
             }}
           >
-            התחברות
+            Login
           </Button>
         </Box>
 
