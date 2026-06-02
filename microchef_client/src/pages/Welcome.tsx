@@ -10,41 +10,41 @@ export default function Welcome() {
   const navigate = useNavigate()
 
   return (
-    <Box 
-      sx={{ 
-        height: 'calc(100vh - 65px)', 
-        display: 'flex', 
-        alignItems: 'center', 
+    <Box
+      sx={{
+        height: 'calc(100vh - 65px)',
+        display: 'flex',
+        alignItems: 'center',
         justifyContent: 'center',
         background: 'linear-gradient(180deg, #f9fafb 0%, #f3f4f6 100%)',
-        overflow: 'hidden',
-        pr: { xs: 4, md: 8 },  // רווח רגיל בצד ימין
-        pl: { xs: 6, md: 24 }   // רווח ענק ומודגש בצד שמאל שמזיז את הכל ימינה
+        overflowY: 'hidden',
+        pr: { xs: 4, md: 8 },
+        pl: { xs: 6, md: 24 }
       }}
     >
       {/* מיכל מרכזי */}
-      <Box 
-        sx={{ 
-          display: 'flex', 
-          flexDirection: { xs: 'column-reverse', md: 'row' }, 
-          alignItems: 'center', 
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column-reverse', md: 'row' },
+          alignItems: 'center',
           justifyContent: 'space-between',
-          gap: { xs: 0, md: 0 }, 
-          maxWidth: '1400px', 
-          width: '100%' 
+          gap: { xs: 0, md: 0 },
+          maxWidth: '1400px',
+          width: '100%'
         }}
       >
-        
+
         {/* צד שמאל של המסך: תוכן שיווקי */}
         <Box sx={{ flex: 1.1, textAlign: { xs: 'center', md: 'left' }, width: '100%' }}>
           <Stack spacing={3}>
-            <Typography 
-              variant="h2" 
-              component="h1" 
-              sx={{ 
-                fontWeight: 800, 
-                fontSize: { xs: '2.5rem', sm: '3.2rem', md: '3.8rem' }, 
-                color: '#365c00', 
+            <Typography
+              variant="h2"
+              component="h1"
+              sx={{
+                fontWeight: 800,
+                fontSize: { xs: '2.5rem', sm: '3.2rem', md: '3.8rem' },
+                color: '#365c00',
                 letterSpacing: '-0.5px',
                 lineHeight: 1.1
               }}
@@ -53,12 +53,12 @@ export default function Welcome() {
               <br />
               Zero Waste.
             </Typography>
-            
-            <Typography 
-              variant="h6" 
-              sx={{ 
-                color: '#4b5563', 
-                fontWeight: 400, 
+
+            <Typography
+              variant="h6"
+              sx={{
+                color: '#4b5563',
+                fontWeight: 400,
                 lineHeight: 1.6,
                 fontSize: { xs: '1.05rem', sm: '1.2rem' },
                 maxWidth: '540px',
@@ -103,7 +103,7 @@ export default function Welcome() {
             src={fullLogo}
             alt="Micro Chef Full Logo"
             sx={{
-              width: { xs: '240px', sm: '340px', md: '100%' }, 
+              width: { xs: '240px', sm: '340px', md: '100%' },
               maxWidth: '480px', // הגדלנו עוד קצת את הגבול המקסימלי של הלוגו לבקשתך
               height: 'auto',
               objectFit: 'contain',
