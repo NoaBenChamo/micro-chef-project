@@ -1,3 +1,3 @@
 export default function InventoryAnalytics() {
-  return <div>ברוכים הבאים</div>;
+  return <div>ברוכים הבאים!</div>;
 }
