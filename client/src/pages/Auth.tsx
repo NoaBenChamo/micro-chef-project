@@ -13,14 +13,47 @@ import FormLabel from '@mui/material/FormLabel'
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true)
-  const [role, setRole] = useState('adult')
+  const [role, setRole] = useState('child')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (isLogin) {
-      console.log('Logging in with credentials...')
-    } else {
-      console.log('Creating account with role:', role)
+    setError('')
+    setLoading(true)
+
+    try {
+      if (isLogin) {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        })
+        const data = await response.json()
+        if (!response.ok) throw new Error(data.message)
+        localStorage.setItem('token', data.token)
+        console.log('Logged in successfully!')
+      } else {
+        const response = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password, role })
+        })
+        const data = await response.json()
+        if (!response.ok) throw new Error(data.message)
+        console.log('Account created successfully!')
+        setIsLogin(true)
+        setName('')
+        setEmail('')
+        setPassword('')
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -62,6 +95,12 @@ export default function Auth() {
           {isLogin ? 'Please enter your details to sign in' : 'Join MicroChef and stop wasting food'}
         </Typography>
 
+        {error && (
+          <Box sx={{ mb: 2, p: 1.5, backgroundColor: '#fee2e2', borderRadius: '8px', border: '1px solid #fca5a5' }}>
+            <Typography sx={{ color: '#dc2626', fontSize: '0.9rem' }}>{error}</Typography>
+          </Box>
+        )}
+
         <Stack spacing={2.5}>
           
           {/* שדה שם מלא - מוצג רק ב-Sign Up */}
@@ -71,6 +110,8 @@ export default function Auth() {
               variant="outlined" 
               fullWidth 
               required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               sx={{ '& .MuiOutlinedInput-root': { borderRadius: '12px' } }}
             />
           )}
@@ -107,6 +148,8 @@ export default function Auth() {
             variant="outlined" 
             fullWidth 
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             sx={{ '& .MuiOutlinedInput-root': { borderRadius: '12px' } }}
           />
 
@@ -116,6 +159,8 @@ export default function Auth() {
             variant="outlined" 
             fullWidth 
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             sx={{ '& .MuiOutlinedInput-root': { borderRadius: '12px' } }}
           />
 
@@ -123,6 +168,7 @@ export default function Auth() {
             type="submit" 
             variant="contained" 
             size="large"
+            disabled={loading}
             sx={{ 
               backgroundColor: '#8eb652', 
               color: '#ffffff',
@@ -135,7 +181,7 @@ export default function Auth() {
               mt: 1
             }}
           >
-            {isLogin ? 'Sign In' : 'Sign Up'}
+            {loading ? 'Loading...' : (isLogin ? 'Sign In' : 'Sign Up')}
           </Button>
 
           <Typography variant="body2" sx={{ color: '#4b5563', pt: 1 }}>
