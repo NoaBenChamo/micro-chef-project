@@ -7,6 +7,10 @@ import InventoryAnalytics from './pages/InventoryAnalytics'
 import AiRecipeDetails from './pages/AiRecipeDetails'
 import AppNavbar from './pages/AppNavbar'
 
+function func() {
+  throw new Error('Function not implemented.')
+}
+
 function Layout() {
   return (
     <>
